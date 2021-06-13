@@ -1,13 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import ChildComponent from "./childComponent";
+import { bugAdded, unResolvedBugsSelector } from "../simplestore/bugs";
 
 class Teststoreclass extends Component {
-  componentDidMount() {}
+  state = {
+    number: 5,
+  };
+
+  componentDidMount() {
+    this.props.addBug();
+    console.log(this.state.number);
+  }
 
   componentDidUpdate() {
     if (this.props.bugs.filter((x) => x.id === 3).length > 0) {
-      console.log("ssis has been completed");
     }
+  }
+
+  Return1(param) {
+    console.log(`execute Return 1 function ${param}`);
   }
 
   render() {
@@ -18,11 +30,21 @@ class Teststoreclass extends Component {
         <p>ownprops: {this.props.propsko}</p>
         <ul>
           {this.props.bugs.map((bug) => (
-            <li
-              key={bug.id}
-            >{`Id: ${bug.id} Description: ${bug.description}`}</li>
+            <li key={bug.id}>
+              {`Id: ${bug.id} Description: ${bug.description}`}
+            </li>
           ))}
         </ul>
+        <ChildComponent callBackFunctionKo={this.Return1}>
+          Child comp
+        </ChildComponent>
+        <button
+          onClick={() => this.setState({ number: this.state.number + 1 })}
+        >
+          increment {this.state.number}
+        </button>
+        <br></br>
+        <button onClick={() => this.props.addBug()}>Add Bug</button>
       </div>
     );
   }
@@ -36,7 +58,9 @@ function mapStateToProps(state, ownprops) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    addBug: () => dispatch(bugAdded("Bug1")),
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Teststoreclass);
