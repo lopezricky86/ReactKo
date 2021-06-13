@@ -48,7 +48,7 @@ function App() {
         {/* <Updateclass></Updateclass>
         <Populatelist></Populatelist>
         <Counter></Counter> */}
-        <TestStore></TestStore>
+        {/* <TestStore></TestStore> */}
         <Teststoreclass propsko="ricky pogi"></Teststoreclass>
 
         {/* <br></br>
