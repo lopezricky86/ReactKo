@@ -15,4 +15,10 @@ const isPropExists = "type" in car ? true : false;
 
 const answer = objectko.map((x) => console.log("name" in x));
 
-// console.log(isPropExists);
+// let yyy = Object.values(Object.fromEntries(
+//   ['name', 'address']
+//   .filter(key => key in letter)
+//   .map(key => [key, letter[key]])
+// ))
+
+// let zzz = yyy.length > 0 ? yyy : '';
